@@ -4,7 +4,7 @@
     data-link="{{ route('product',$product->slug) }}">
     @if($product->discount > 0)
     <div class="d-flex position-absolute z-2">
-        <span class="for-discount-value p-1 pl-2 pr-2 font-bold fs-13">
+        <span class="for-discount-value p-1 pl-2 pr-2 font-bold fs-13 d-none">
             <span class="direction-ltr d-block">
                 @if ($product->discount_type == 'percent')
                     -{{ round($product->discount,(!empty($decimalPointSettings) ? $decimalPointSettings: 0))}}%

@@ -44,6 +44,55 @@ use App\Http\Controllers\Payment_Methods\SenangPayController;
 use App\Http\Controllers\Payment_Methods\MercadoPagoController;
 use App\Http\Controllers\Payment_Methods\BkashPaymentController;
 use App\Http\Controllers\Payment_Methods\PaystackController;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
+
+    Route::get('order-email', function () {
+        try {
+
+            $orderId = 100010;
+            $viewId  = 100207;
+
+            Log::info('Order Email Test: Started', [
+                'order_id' => $orderId,
+                'email'    => 'darshankondekar01@gmail.com',
+            ]);
+
+            Mail::to('darshankondekar01@gmail.com')
+                ->send(new \App\Mail\OrderPlaced($orderId));
+
+            if (count(Mail::failures()) > 0) {
+                Log::error('Order Email Test: Mail failures detected', [
+                    'failures' => Mail::failures(),
+                ]);
+
+                return response()->json([
+                    'status'  => false,
+                    'message' => 'Mail sending failed',
+                ], 500);
+            }
+
+            Log::info('Order Email Test: Email sent successfully', [
+                'order_id' => $orderId,
+            ]);
+
+            return view('email-templates.order-placed-v2', compact('viewId'));
+
+        } catch (\Throwable $e) {
+
+            Log::error('Order Email Test: Exception occurred', [
+                'message' => $e->getMessage(),
+                'file'    => $e->getFile(),
+                'line'    => $e->getLine(),
+                'trace'   => substr($e->getTraceAsString(), 0, 1000), // prevent log overflow
+            ]);
+
+            return response()->json([
+                'status'  => false,
+                'message' => 'Something went wrong while sending email.',
+            ], 500);
+        }
+    });
 
 /*
 |--------------------------------------------------------------------------

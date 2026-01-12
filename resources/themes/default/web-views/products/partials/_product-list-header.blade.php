@@ -58,12 +58,12 @@
                     <option value="latest" {{ request('sort_by') == 'latest' ? 'selected':'' }}>
                         {{ translate('Default') }}
                     </option>
-                    <option value="low-high" {{ request('sort_by') == 'low-high' ? 'selected':'' }}>
+                    <?php /*<option value="low-high" {{ request('sort_by') == 'low-high' ? 'selected':'' }}>
                         {{ translate('Price') }} ({{ translate('Low_to_High') }})
                     </option>
                     <option value="high-low" {{ request('sort_by') == 'high-low' ? 'selected':'' }}>
                         {{ translate('Price') }} ({{ translate('High_to_Low') }})
-                    </option>
+                    </option>*/?>
                     <option value="rating-low-high" {{ request('sort_by') == 'rating-low-high' ? 'selected':'' }}>
                         {{ translate('Rating') }} ({{ translate('Low_to_High') }})
                     </option>

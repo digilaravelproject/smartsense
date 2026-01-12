@@ -79,7 +79,7 @@
                                     <hr>
                                     @include('web-views.products.partials._filter-product-type')
                                     @include('web-views.products.partials._filter-product-sort')
-                                    @include('web-views.products.partials._filter-product-price')
+                                    <?php /*@include('web-views.products.partials._filter-product-price') */?>
                                     @include('web-views.products.partials._filter-product-categories', [
                                         'productCategories' => $categories,
                                         'dataFrom' => 'shop-view',

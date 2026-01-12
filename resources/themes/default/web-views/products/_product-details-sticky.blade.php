@@ -108,7 +108,7 @@
                             <input type="hidden" class="product-generated-variation-code" name="product_variation_code" data-product-id="{{ $productDetails['id'] }}">
                             <input type="hidden" value="" class="product-exist-in-cart-list form-control w-50" name="key">
                         </div>
-                        <div class="d-flex flex-wrap align-items-center mb-2 pro">
+                        <?php /*<div class="d-flex flex-wrap align-items-center mb-2 pro d-none">
                             <span class="fs-12 text-muted line--limit-1 text-capitalize product-generated-variation-text"></span>
                             <div class="d-none d-sm-flex flex-wrap align-items-center">
                                 <span class="{{ count(json_decode($productDetails->variation, true)) > 0 ? '__inline-25' : '' }} {{ count(json_decode($productDetails->variation, true)) > 0 ? 'mx-2' : '' }} mt-0"></span>
@@ -124,7 +124,7 @@
                                     </span>
                                 </span>
                             </div>
-                        </div>
+                        </div> */?>
                     </div>
 
                     <div class="d-sm-none d-flex gap-1 fs-12">
@@ -146,10 +146,10 @@
                         <button class="flex-grow-1 btn btn-number __p-10 web-text-primary product-quantity-plus bg-count-light border-0 shadow-none px-3" type="button" data-producttype="physical" data-type="plus" data-field="quantity">+</button>
                     </div>
 
-                    <div class="font-weight-normal text-accent align-items-end gap-2 d-none d-lg-flex">
+                    <?php /*<div class="font-weight-normal text-accent align-items-end gap-2 d-none d-lg-flex">
                         <span class="product-bottom-section-price fs-24 font-bold user-select-none text-nowrap"></span>
-                    </div>
-
+                    </div> */?>
+ 
 
                     @if(($product->added_by == 'seller' && ($sellerTemporaryClose || (isset($product->seller->shop) && $product->seller->shop->vacation_status && $currentDate >= $sellerVacationStartDate && $currentDate <= $sellerVacationEndDate))) ||
                                          ($product->added_by == 'admin' && ($inHouseTemporaryClose || ($inHouseVacationStatus && $currentDate >= $inHouseVacationStartDate && $currentDate <= $inHouseVacationEndDate))))

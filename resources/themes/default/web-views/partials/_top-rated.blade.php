@@ -21,7 +21,7 @@
                             <a class="__best-selling" href="{{route('product', $product->slug)}}">
                                 @if(getProductPriceByType(product: $product, type: 'discount', result: 'value') > 0)
                                     <div class="d-flex">
-                                    <span class="for-discount-value p-1 pl-2 pr-2 font-bold fs-13">
+                                    <span class="for-discount-value p-1 pl-2 pr-2 font-bold fs-13 d-none">
                                         <span class="direction-ltr d-block">
                                             -{{ getProductPriceByType(product: $product, type: 'discount', result: 'string') }}
                                         </span>
@@ -59,7 +59,7 @@
                                                 </span>
                                             </div>
                                         @endif
-                                        <h4 class="widget-product-meta d-flex flex-wrap gap-8 align-items-center row-gap-0 mb-0 letter-spacing-0">
+                                        <?php /*<h4 class="widget-product-meta d-flex flex-wrap gap-8 align-items-center row-gap-0 mb-0 letter-spacing-0">
                                             <span>
                                                 @if(getProductPriceByType(product: $product, type: 'discount', result: 'value') > 0)
                                                     <del class="__text-12px __color-9B9B9B">
@@ -69,8 +69,8 @@
                                             </span>
                                             <span class="text-accent text-dark">
                                                {{ getProductPriceByType(product: $product, type: 'discounted_unit_price', result: 'string') }}
-                                            </span>
-                                        </h4>
+                                            </span> 
+                                        </h4>*/?>
                                     </div>
                                 </div>
                             </a>

@@ -73,7 +73,7 @@
 
                                 <div class="d-flex flex-column gap-3">
                                     <button type="button" data-product-id="{{$product['id']}}"
-                                            class="btn __text-18px border wishList-pos-btn d-sm-none product-action-add-wishlist">
+                                            class="btn __text-18px border wishList-pos-btn d-sm-none product-action-add-wishlist d-none">
                                         <i class="fa {{($wishlistStatus == 1?'fa-heart':'fa-heart-o')}} wishlist_icon_{{$product['id']}} web-text-primary"
                                            aria-hidden="true"></i>
                                         <div class="wishlist-tooltip" x-placement="top">
@@ -194,7 +194,7 @@
 
                                 <form class="mb-2 addToCartDynamicForm add-to-cart-details-form">
 
-                                    <div class="mb-3">
+                                    <div class="mb-3 d-none">
                                         <h3 class="font-weight-normal text-accent d-flex align-items-end gap-2 pt-1">
                                             <span class="discounted-unit-price fs-24 font-bold" style="color: var(--web-secondary);">
                                                 {{ getProductPriceByType(product: $product, type: 'discounted_unit_price', result: 'string') }}
@@ -337,7 +337,7 @@
                                                 <input type="hidden" class="product-generated-variation-code" name="product_variation_code" data-product-id="{{ $product['id'] }}">
                                                 <input type="hidden" value="" class="product-exist-in-cart-list form-control w-50" name="key">
                                             </div>
-                                            <div class="product-details-chosen-price-section">
+                                            <?php /*<div class="product-details-chosen-price-section d-none">
                                                 <div
                                                     class="d-none d-sm-flex justify-content-start align-items-center me-2">
                                                     <div
@@ -350,7 +350,7 @@
                                                         <small class="product-details-tax-amount"></small>)
                                                     </small> 
                                                 </div>
-                                            </div>
+                                            </div> */?>
                                         </div>
                                     </div>
 
@@ -396,7 +396,7 @@
                                                 </button>
                                             </div>
                                         @endif
-                                        <button type="button" data-product-id="{{ $product['id'] }}" class="btn __text-18px border product-action-add-wishlist">
+                                        <button type="button" data-product-id="{{ $product['id'] }}" class="btn __text-18px border product-action-add-wishlist d-none">
                                             <i class="fa {{($wishlistStatus == 1?'fa-heart':'fa-heart-o')}} wishlist_icon_{{$product['id']}} web-text-primary"
                                                aria-hidden="true"></i>
                                             <span class="fs-14 text-muted align-bottom countWishlist-{{$product['id']}}">{{$countWishlist}}</span>

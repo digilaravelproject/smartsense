@@ -11,7 +11,7 @@
         </a>
         <a class="navbar-tool-text ms-2"
            href="{{route('shop-cart') }}"><small>{{ translate('my_cart') }}</small>
-            <span class="cart-total-price font-bold fs-14">
+            <span class="cart-total-price font-bold fs-14 d-none">
                 {{ webCurrencyConverter(amount: \App\Utils\CartManager::getCartListTotalAppliedDiscount($cart)) }}
             </span>
         </a>
@@ -25,7 +25,7 @@
         <a class="navbar-tool-text ms-2"
            href="{{ route('customer.auth.login') }}">
             <small>{{ translate('my_cart') }}</small>
-            <span class="cart-total-price font-bold fs-14">
+            <span class="cart-total-price font-bold fs-14 d-none">
                 {{ webCurrencyConverter(amount: \App\Utils\CartManager::getCartListTotalAppliedDiscount($cartList)) }}
             </span>
         </a>
@@ -66,7 +66,7 @@
                     }
                 ?>
 
-                <div class="dropdown-saved-amount text-center  align-items-center justify-content-center text-accent mb-3 {{$totalSavedAmount <= 0 ? 'd-none' : 'd-flex'}}">
+                <?php /*<div class="dropdown-saved-amount text-center  align-items-center justify-content-center text-accent mb-3 {{$totalSavedAmount <= 0 ? 'd-none' : 'd-flex'}}">
                     <img src="{{theme_asset(path: 'public/assets/front-end/img/party-popper.svg') }}" class="mr-2" alt="">
                     <small>
                         {{ translate('you_have_saved') }}
@@ -74,7 +74,7 @@
                             {{ webCurrencyConverter(amount: $totalSavedAmount)}}
                         </span>!
                     </small>
-                </div>
+                </div> */?>
                 <div class="__h-20rem" data-simplebar data-simplebar-auto-hide="false">
                     @php($sub_total=0)
                     @php($total_tax=0)
@@ -122,7 +122,7 @@
                                             <span
                                                 class="text-muted me-2">x <span
                                                     class="cart_quantity_multiply{{$cartItem['id']}}">{{$cartItem['quantity']}}</span></span>
-                                            <span class="text-accent me-2 discount_price_of_{{$cartItem['id']}}">
+                                            <span class="text-accent me-2 discount_price_of_{{$cartItem['id']}} d-none">
                                                 {{ webCurrencyConverter(amount: ($cartItem['price']-$cartItem['discount'])*$cartItem['quantity'])}}
                                             </span>
                                         </div>
@@ -200,7 +200,7 @@
                 @endif
                 <div class="d-flex flex-wrap justify-content-between align-items-center pb-2">
                     <div
-                        class="font-size-sm {{Session::get('direction') === "rtl" ? 'ml-2 float-left' : 'mr-2 float-right'}} py-2 ">
+                        class="font-size-sm {{Session::get('direction') === "rtl" ? 'ml-2 float-left' : 'mr-2 float-right'}} py-2 d-none">
                         <span>{{ translate('subtotal') }} :</span>
                         <span
                             class="text-accent font-size-base cart_total_amount {{Session::get('direction') === "rtl" ? 'mr-1' : 'ml-1'}}">
@@ -209,12 +209,12 @@
                     </div>
 
                     @if($web_config['guest_checkout_status'] || auth('customer')->check())
-                        <a class="btn btn-outline-secondary btn-sm" href="{{route('shop-cart') }}">
+                        <a class="btn btn-outline-secondary btn-sm mt-2 ms-auto" href="{{route('shop-cart') }}">
                             {{ translate('expand_cart') }}<i
                                 class="czi-arrow-{{Session::get('direction') === "rtl" ? 'left mr-1 ml-n1' : 'right ml-1 mr-n1'}}"></i>
                         </a>
                     @else
-                        <a class="btn btn-outline-secondary btn-sm" href="{{route('customer.auth.login') }}">
+                        <a class="btn btn-outline-secondary btn-sm mt-2 ms-auto" href="{{route('customer.auth.login') }}">
                             {{ translate('expand_cart') }}<i
                                 class="czi-arrow-{{Session::get('direction') === "rtl" ? 'left mr-1 ml-n1' : 'right ml-1 mr-n1'}}"></i>
                         </a>

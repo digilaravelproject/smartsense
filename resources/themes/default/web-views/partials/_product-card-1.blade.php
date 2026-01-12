@@ -2,7 +2,7 @@
     @php($overallRating = getOverallRating($product->reviews))
     <div class="flash_deal_product get-view-by-onclick" data-link="{{ route('product',$product->slug) }}">
         @if(getProductPriceByType(product: $product, type: 'discount', result: 'value') > 0)
-            <span class="for-discount-value p-1 pl-2 pr-2 font-bold fs-13">
+            <span class="for-discount-value p-1 pl-2 pr-2 font-bold fs-13 d-none">
                 <span class="direction-ltr d-block">
                     -{{ getProductPriceByType(product: $product, type: 'discount', result: 'string') }}
                 </span>

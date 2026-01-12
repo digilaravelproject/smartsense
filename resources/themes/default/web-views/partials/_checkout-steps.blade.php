@@ -15,7 +15,7 @@
         </div>
         @php($billingInputByCustomer = getWebConfig(name: 'billing_input_by_customer'))
         <div class="step-label">
-            {{translate('shipping')}} {{$billingInputByCustomer == 1? translate('and_billing'):' '}}
+            {{translate('shipping')}} <?php /*{{$billingInputByCustomer == 1? translate('and_billing'):' '}} */?>
         </div>
     </a>
     <a class="step-item {{$step >= 3?'active':''}} {{$step == 3?'current':''}}"
@@ -24,7 +24,7 @@
             <span class="step-count"><i class="czi-card"></i></span>
         </div>
         <div class="step-label">
-            {{translate('payment')}}
+            {{translate('Checkout')}}
         </div>
     </a>
 </div>

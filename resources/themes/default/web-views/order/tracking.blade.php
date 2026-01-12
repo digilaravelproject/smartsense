@@ -47,9 +47,9 @@
                                     <th>
                                         <span class="fs-12 font-semi-bold text-black">{{ translate('QTY') }}</span>
                                     </th>
-                                    <th class="text-end">
+                                    <?php /*<th class="text-end">
                                         <span class="fs-12 font-semi-bold text-black">{{ translate('sub_total') }}</span>
-                                    </th>
+                                    </th> */?>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -117,9 +117,9 @@
                                         <td class="fs-12 font-semi-bold">
                                             {{$order_details->qty}}
                                         </td>
-                                        <td class="text-end fs-12 font-semi-bold">
+                                        <?php /*<td class="text-end fs-12 font-semi-bold">
                                             {{ webCurrencyConverter(amount: $order_details['price']*$order_details['qty']) }}
-                                        </td>
+                                        </td> */?>
                                     </tr>
                                     @php($sub_total+=$order_details['price']*$order_details['qty'])
                                     @php($total_tax+=$order_details['tax'])
@@ -143,7 +143,7 @@
                     }
                     ?>
 
-                    <div class="bg-light rounded border p3">
+                    <?php /*<div class="bg-light rounded border p3">
                         <div class="table-responsive">
                             <table class="table border-0 text-end table-align-middle text-capitalize">
                                 <thead>
@@ -194,7 +194,7 @@
                                 </tbody>
                             </table>
                         </div>
-                    </div>
+                    </div> */?>
                 </div>
             </div>
         </div>

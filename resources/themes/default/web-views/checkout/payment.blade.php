@@ -100,11 +100,11 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="text-center mb-10px">
+                                            <?php /*<div class="text-center mb-10px">
                                                 <a id="bring_change_amount_btn" class="btn text-center text-capitalize text--primary fs-12 p-0" data-toggle="collapse" href="#bring_change_amount" role="button" aria-expanded="false" aria-controls="change_amount">
                                                     {{ translate('see_more') }}
                                                 </a>
-                                            </div>
+                                            </div> */?>
                                         </div>
                                         @endif
 

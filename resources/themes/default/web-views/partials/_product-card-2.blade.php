@@ -20,13 +20,13 @@
                      alt="{{ $product['name'] }} hover">
             </a>
 
-        @if(getProductPriceByType(product: $product, type: 'discount', result: 'value') > 0)
+        <?php /*@if(getProductPriceByType(product: $product, type: 'discount', result: 'value') > 0)
                 <div class="on-sale-wrap">
                     <span class="on-sale-item">
                     -{{ getProductPriceByType(product: $product, type: 'discount', result: 'string') }}
                 </span>
                 </div>
-            @endif
+            @endif */?>
 
             <ul class="list-product-btn">
                 <li>
@@ -36,13 +36,13 @@
                         <span class="tooltip">{{ translate('add_to_cart') }}</span>
                     </a>
                 </li>
-                <li>
+                <?php /*<li>
                     <a href="javascript:" onclick="addWishlist('{{$product['id']}}','{{ $productUrl }}');"
                        class="bg-surface hover-tooltip tooltip-left box-icon">
                         <span class="icon tio-heart-outlined"></span>
                         <span class="tooltip">{{ translate('add_to_wishlist') }}</span>
                     </a>
-                </li>
+                </li> */?>
                 <li>
                     <a href="javascript:" 
                        data-product-id="{{ $product->id }}"
@@ -86,12 +86,12 @@
                 {{ Str::limit($product['name'], 25) }}
             </a>
 
-            <p class="price-wrap fw-medium">
+            <?php /*<p class="price-wrap fw-medium">
                 @if(getProductPriceByType(product: $product, type: 'discount', result: 'value') > 0)
                     <span class="price-old"><del>{{ webCurrencyConverter(amount: $product->unit_price) }}</del></span>
                 @endif
                 <span class="price-new">{{ getProductPriceByType(product: $product, type: 'discounted_unit_price', result: 'string') }}</span>
-            </p>
+            </p> */?>
 
             @php
                 $tags = [];

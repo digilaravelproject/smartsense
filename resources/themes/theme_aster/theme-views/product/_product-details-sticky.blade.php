@@ -104,7 +104,7 @@
                         <input type="hidden" class="product-generated-variation-code" name="product_variation_code" data-product-id="{{ $productDetails['id'] }}">
                         <input type="hidden" value="" class="product-exist-in-cart-list form-control w-50" name="key">
                     </div>
-                    <div class="d-flex flex-wrap align-items-center mb-2 pro">
+                    <?php /*<div class="d-flex flex-wrap align-items-center mb-2 pro">
                         <span class="fs-12 text-muted line--limit-1 text-capitalize product-generated-variation-text">
                         </span>
                         <div class="d-none d-sm-flex flex-wrap align-items-center">
@@ -120,7 +120,7 @@
                                 </span>
                             </span>
                         </div>
-                    </div>
+                    </div> */?>
                 </div>
 
                 <div class="d-sm-none flex-column flex-sm-row d-flex gap-1 fs-12">

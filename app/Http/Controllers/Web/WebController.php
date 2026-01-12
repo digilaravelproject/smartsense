@@ -57,6 +57,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use function App\Utils\payment_gateways;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OrderInvoiceMail;
+use Illuminate\Support\Facades\Log;
 
 class WebController extends Controller
 {
@@ -629,6 +632,102 @@ class WebController extends Controller
                     'redirect' => route('order-placed-success', ['orderIds' => json_encode($orderIds)]),
                 ]);
             }
+
+            /* ================= EMAIL SENDING WITH ERROR HANDLING ================= */
+
+            foreach ($orderIds as $orderId) {
+
+                try {
+                    $order = Order::with(['details.product', 'customer'])->find($orderId);
+
+                    if (!$order) {
+                        Log::warning('Invoice Mail: Order not found', ['order_id' => $orderId]);
+                        continue;
+                    }
+
+                    /*
+                    |--------------------------------------------------------------------------
+                    | Resolve customer safely (guest + registered)
+                    |--------------------------------------------------------------------------
+                    */
+                    $customer = $order->customer;
+
+                    // Guest order → get email from address snapshot
+                    if (!$customer) {
+
+                        // Shipping address snapshot
+                        if (!empty($order->shipping_address_data?->email)) {
+                            $customer = (object) [
+                                'name'  => $order->shipping_address_data->contact_person_name ?? 'Customer',
+                                'email' => $order->shipping_address_data->email,
+                                'phone' => $order->shipping_address_data->phone ?? null,
+                            ];
+                        }
+
+                        // Billing fallback
+                        elseif (!empty($order->billing_address_data?->email)) {
+                            $customer = (object) [
+                                'name'  => $order->billing_address_data->contact_person_name ?? 'Customer',
+                                'email' => $order->billing_address_data->email,
+                                'phone' => $order->billing_address_data->phone ?? null,
+                            ];
+                        }
+                    }
+
+                    // Final guard
+                    if (!$customer || empty($customer->email)) {
+                        Log::warning('Invoice Mail: Customer email not available', [
+                            'order_id' => $orderId
+                        ]);
+                        continue;
+                    }
+
+                    $items = $order->details;
+
+                    // Customer Email
+                    if (!empty($customer->email)) {
+                        try {
+                            Mail::to($customer->email)
+                                ->send(new OrderInvoiceMail($order, $customer, $items));
+
+                            Log::info('Invoice mail sent to customer', [
+                                'order_id' => $orderId,
+                                'email' => $customer->email
+                            ]);
+                        } catch (\Throwable $e) {
+                            Log::error('Customer invoice mail failed', [
+                                'order_id' => $orderId,
+                                'email' => $customer->email,
+                                'error' => $e->getMessage()
+                            ]);
+                        }
+                    }
+
+                    // Admin Email
+                    try {
+                        Mail::to('darshankondekar01@gmail.com')
+                            ->send(new OrderInvoiceMail($order, $customer, $items));
+
+                        Log::info('Invoice mail sent to admin', [
+                            'order_id' => $orderId,
+                            'email' => 'darshankondekar01@gmail.com'
+                        ]);
+                    } catch (\Throwable $e) {
+                        Log::error('Admin invoice mail failed', [
+                            'order_id' => $orderId,
+                            'error' => $e->getMessage()
+                        ]);
+                    }
+
+                } catch (\Throwable $e) {
+                    Log::critical('Invoice mail fatal error', [
+                        'order_id' => $orderId,
+                        'error' => $e->getMessage()
+                    ]);
+                }
+            }
+
+            /* ================= END EMAIL BLOCK ================= */
 
             $isNewCustomerInSession = session('newCustomerRegister');
             session()->forget('newCustomerRegister');

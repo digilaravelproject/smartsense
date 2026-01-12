@@ -19,11 +19,11 @@
                             {{ translate('product')}}
                         </div>
                     </th>
-                    <th class="font-weight-bold pl-0 __w-15p text-capitalize">{{ translate('unit_price')}}</th>
+                    <th class="font-weight-bold pl-0 __w-15p text-capitalize d-none">{{ translate('unit_price')}}</th>
                     <th class="font-weight-bold __w-15p">
                         <span class="pl-3">{{ translate('qty')}}</span>
                     </th>
-                    <th class="font-weight-bold __w-15p text-end">
+                    <th class="font-weight-bold __w-15p text-end d-none">
                         <div class="pr-3">
                             {{ translate('total')}}
                         </div>
@@ -307,7 +307,7 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td class="{{ $checkProductStatus == 0?'custom-cart-opacity-50':'' }} __w-15p">
+                                <td class="{{ $checkProductStatus == 0?'custom-cart-opacity-50':'' }} __w-15p d-none">
                                     <div class="text-center">
                                         <div class="fw-semibold">
                                             {{ webCurrencyConverter(amount: $cartItem['price']-$cartItem['discount']) }}
@@ -371,7 +371,7 @@
                                         </div>
                                     @endif
                                 </td>
-                                <td class="__w-15p text-end {{ $checkProductStatus == 0?'custom-cart-opacity-50':'' }}">
+                                <td class="__w-15p text-end d-none {{ $checkProductStatus == 0?'custom-cart-opacity-50':'' }}">
                                     <div>
                                         {{ webCurrencyConverter(amount: ($cartItem['price']-$cartItem['discount'])*$cartItem['quantity']) }}
                                     </div>

@@ -8725,7 +8725,7 @@ return [
     "your_order_is_completed" => "Your order is completed",
     "your_order_placed_successfully" => "Your order placed successfully",
     "your_password_must_be_at_least_8_characters" => "Your password must be at least 8 characters",
-    "your_payment_has_been_successfully_processed_and_your_order" => "Your payment has been successfully processed and your order",
+    "your_payment_has_been_successfully_processed_and_your_order" => "Your order has been successfully processed and your order",
     "your_personal_code" => "Your personal code",
     "your_phone" => "Your phone",
     "your_phone_number" => "Your phone number",

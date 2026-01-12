@@ -1,6 +1,6 @@
 <aside class="col-lg-4 pt-4 pt-lg-2 px-max-md-0 order-summery-aside">
     <div class="__cart-total __cart-total_sticky">
-        <div class="cart_total p-0">
+        <div class="cart_total p-0 d-none">
             @php($shippingMethod=getWebConfig(name: 'shipping_method'))
             @php($subTotal=0)
             @php($totalTax=0)

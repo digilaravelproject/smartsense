@@ -59,7 +59,7 @@
                             </div>
                             <div class="card-body d-flex flex-column gap-4">
                                 @include('theme-views.product.partials._filter-product-type')
-                                @include('theme-views.product.partials._filter-product-price')
+                                <?php /*@include('theme-views.product.partials._filter-product-price') */?>
                                 @include('theme-views.product.partials._filter-product-categories', [
                                     'productCategories' => $categories,
                                     'dataFrom' => 'flash-deals',

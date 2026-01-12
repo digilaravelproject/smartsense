@@ -5,7 +5,7 @@
         <div class=" inline_product clickable d-flex justify-content-center">
             @if(getProductPriceByType(product: $product, type: 'discount', result: 'value') > 0)
                 <div class="d-flex">
-                    <span class="for-discount-value p-1 pl-2 pr-2 font-bold fs-13">
+                    <span class="for-discount-value p-1 pl-2 pr-2 font-bold fs-13 d-none">
                         <span class="direction-ltr d-block">
                             -{{ getProductPriceByType(product: $product, type: 'discount', result: 'string') }}
                         </span>
@@ -49,7 +49,7 @@
                     {{ $product['name'] }}
                 </a>
             </h3>
-            <div class="justify-content-between text-center">
+            <div class="justify-content-between text-center d-none">
                 <h4 class="product-price text-center d-flex flex-wrap justify-content-center align-items-center gap-8 mb-0 letter-spacing-0">
                     @if($product->discount > 0)
                         <del class="category-single-product-price">

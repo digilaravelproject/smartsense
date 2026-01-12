@@ -137,7 +137,7 @@
                             <i class="tio-search"></i>
                         </a>
                     </div>
-                    <div class="navbar-tool dropdown d-none d-md-block {{Session::get('direction') === "rtl" ? 'mr-md-3' : 'ml-md-3'}}">
+                    <?php /*<div class="navbar-tool dropdown d-none d-md-block {{Session::get('direction') === "rtl" ? 'mr-md-3' : 'ml-md-3'}}">
                         <a class="navbar-tool-icon-box bg-secondary dropdown-toggle" href="{{route('wishlists')}}">
                             <span class="navbar-tool-label">
                                 <span class="countWishlist">
@@ -202,7 +202,7 @@
                                 </a>
                             </div>
                         </div>
-                    @endif
+                    @endif */?>
                     <div id="cart_items">
                         @include('layouts.front-end.partials._cart')
                     </div>
