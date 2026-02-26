@@ -50,7 +50,8 @@ class ProductUpdateRequest extends FormRequest
             'unit' => 'required_if:product_type,==,physical',
             'tax' => 'required|min:0',
             'tax_model' => 'required',
-            'unit_price' => 'required|numeric|gt:0',
+            // allow zero price on update
+            'unit_price' => 'required|numeric|min:0',
             'discount' => 'required|gt:-1',
             'shipping_cost' => 'required_if:product_type,==,physical|gt:-1',
             'minimum_order_qty' => 'required|numeric|min:1',
@@ -99,7 +100,7 @@ class ProductUpdateRequest extends FormRequest
                     );
                 }
 
-                if ($this['product_type'] == 'physical' && $this['unit_price'] <= $this->getDiscountAmount(price: $this['unit_price'], discount: $this['discount'], discountType: $this['discount_type'])) {
+if ($this['product_type'] == 'physical' && $this['unit_price'] > 0 && $this['unit_price'] <= $this->getDiscountAmount(price: $this['unit_price'], discount: $this['discount'], discountType: $this['discount_type'])) {
                     $validator->errors()->add(
                         'unit_price', translate('discount_can_not_be_more_or_equal_to_the_price') . '!'
                     );
@@ -170,11 +171,11 @@ class ProductUpdateRequest extends FormRequest
                         }
 
                         if (str_contains($requestKey, 'price_')) {
-                            if (empty($this[$requestKey]) || $this[$requestKey] < 0) {
+                            if (!isset($this[$requestKey]) || $this[$requestKey] < 0) {
                                 $validator->errors()->add(
                                     'variation_price', translate('Variation_price_are_required') . '!'
                                 );
-                            } else if ($this[$requestKey] <= $this->getDiscountAmount(price: $this[$requestKey] ?? 0, discount: $this['discount'], discountType: $this['discount_type'])) {
+                            } else if ($this[$requestKey] > 0 && $this[$requestKey] <= $this->getDiscountAmount(price: $this[$requestKey] ?? 0, discount: $this['discount'], discountType: $this['discount_type'])) {
                                 $validator->errors()->add(
                                     'variation_price', translate('discount_can_not_be_more_or_equal_to_the_variation_price') . '!'
                                 );
@@ -251,11 +252,11 @@ class ProductUpdateRequest extends FormRequest
 
                     if ($this->has('digital_product_price') && !empty($this['digital_product_price'])) {
                         foreach ($this['digital_product_price'] as $digitalPrice) {
-                            if (empty($digitalPrice) || $digitalPrice < 0) {
+                            if (!isset($digitalPrice) || $digitalPrice < 0) {
                                 $validator->errors()->add(
                                     'variation_price', translate('Digital_variation_price_are_required') . '!'
                                 );
-                            } else if ($digitalPrice <= $this->getDiscountAmount(price: $digitalPrice, discount: $this['discount'], discountType: $this['discount_type'])) {
+                            } else if ($digitalPrice > 0 && $digitalPrice <= $this->getDiscountAmount(price: $digitalPrice, discount: $this['discount'], discountType: $this['discount_type'])) {
                                 $validator->errors()->add(
                                     'variation_price', translate('discount_can_not_be_more_or_equal_to_the_digital_variation_price') . '!'
                                 );
