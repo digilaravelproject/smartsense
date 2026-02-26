@@ -9560,4 +9560,6 @@ return [
 	"Items_Not_Found" => "Items Not Found",
 	"products_added_to_cart_successfully" => "Products added to cart successfully",
 	"Variant_Image" => "Variant Image",
+	"Variant_Description" => "Variant Description",
+	"Enter_description" => "Enter description",
 ];

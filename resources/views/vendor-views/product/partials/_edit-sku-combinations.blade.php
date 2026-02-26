@@ -30,6 +30,11 @@
             </th>
             <th class="text-center">
                 <label for="" class="control-label">
+                    {{ translate('Variant_Description') }}
+                </label>
+            </th>
+            <th class="text-center">
+                <label for="" class="control-label">
                     {{ translate('Variation_Wise_Stock') }}
                 </label>
             </th>
@@ -74,6 +79,11 @@
                             <input type="hidden" name="remove_image_{{ $variationKey }}" value="0" class="remove-image-input">
                         </div>
                     @endif
+                </td>
+                <td>
+                    <textarea name="description_{{ $combination['type'] }}"
+                              class="form-control" placeholder="{{ translate('Enter_description') }}"
+                              rows="2">{{ $combination['description'] ?? '' }}</textarea>
                 </td>
                 <td>                    <input type="number" name="qty_{{ $combination['type'] }}"
                            value="{{ $combination['qty'] }}" min="0" max="100000" step="1"

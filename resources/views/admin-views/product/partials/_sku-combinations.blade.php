@@ -30,6 +30,11 @@
             </th>
             <th class="text-center">
                 <label for="" class="control-label">
+                    {{ translate('Variant_Description') }}
+                </label>
+            </th>
+            <th class="text-center">
+                <label for="" class="control-label">
                     {{ translate('Variation_Wise_Stock') }}
                 </label>
             </th>
@@ -68,6 +73,11 @@
                         <label class="custom-file-label"
                                for="image_{{ $combination['type'] }}">{{ translate('choose_file') }}</label>
                     </div>
+                </td>
+                <td>
+                    <textarea name="description_{{ $combination['type'] }}"
+                              class="form-control" placeholder="{{ translate('Enter_description') }}"
+                              rows="2">{{ $combination['description'] ?? '' }}</textarea>
                 </td>
                 <td>
                     <input type="number" name="qty_{{ $combination['type'] }}"

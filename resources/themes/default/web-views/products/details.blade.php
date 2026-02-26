@@ -305,6 +305,13 @@
                                         </div>
                                     @endforeach
 
+                                    {{-- Variant Description --}}
+                                    <div class="mt-2">
+                                        <div id="variant-description-container" class="text-muted fs-13">
+                                            <span id="variant-description-text"></span>
+                                        </div>
+                                    </div>
+
                                     <div class="mt-3">
                                         <div class="product-quantity d-flex flex-column __gap-15">
                                             <div class="d-flex align-items-center gap-3">
@@ -992,17 +999,36 @@
                 const defaultProductImage = "{{ getStorageImages(path: $product->images_full_url[0] ?? '', type: 'product') }}";
 
                 let finalImage = '';
+                let finalDescription = '';
 
-                if (matched && matched.image) {
-                    finalImage = variantBasePath + matched.image;
+                if (matched) {
+
+                    // ✅ IMAGE
+                    if (matched.image) {
+                        finalImage = variantBasePath + matched.image;
+                    } else {
+                        finalImage = defaultProductImage;
+                    }
+
+                    // ✅ DESCRIPTION
+                    finalDescription = matched.description ? matched.description : '';
+
                 } else {
                     finalImage = defaultProductImage;
+                    finalDescription = '';
                 }
 
+                // Update Image
                 document.querySelectorAll('.variant-img').forEach(img => {
                     img.src = finalImage;
                     img.setAttribute('data-zoom', finalImage);
                 });
+
+                // Update Description
+                const descContainer = document.getElementById('variant-description-text');
+                if (descContainer) {
+                    descContainer.innerHTML = finalDescription;
+                }
             }
 
             const form = document.querySelector('.add-to-cart-details-form');

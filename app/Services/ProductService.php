@@ -297,6 +297,7 @@ class ProductService
 
                 $slug = str_replace('.', '_', $str);
                 $imageName = null;
+                $description = null;
 
                 // upload new file if provided
                 if ($request->hasFile('image_' . $slug)) {
@@ -311,6 +312,7 @@ class ProductService
                                 if (is_array($imageName)) {
                                     $imageName = $imageName['key'] ?? $imageName['path'] ?? null;
                                 }
+                                $description = $existingVariation['description'] ?? null;
                                 break;
                             }
                         }
@@ -330,7 +332,13 @@ class ProductService
                     $imageName = null;
                 }
 
+                // get description from request or retain existing
+                if ($request->has('description_' . $slug)) {
+                    $description = $request->input('description_' . $slug);
+                }
+
                 $item['image'] = $imageName;
+                $item['description'] = $description;
 
                 $variations[] = $item;
             }
