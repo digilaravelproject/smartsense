@@ -194,7 +194,8 @@
 
                                 <form class="mb-2 addToCartDynamicForm add-to-cart-details-form">
 
-                                    <div class="mb-3 d-none">
+                                    @if($product->unit_price !== '' && $product->unit_price > 0)
+                                    <div class="mb-3">
                                         <h3 class="font-weight-normal text-accent d-flex align-items-end gap-2 pt-1">
                                             <span class="discounted-unit-price fs-24 font-bold" style="color: var(--web-secondary);">
                                                 {{ getProductPriceByType(product: $product, type: 'discounted_unit_price', result: 'string') }}
@@ -206,6 +207,7 @@
                                             @endif
                                         </h3>
                                     </div>
+                                    @endif
 
                                     @csrf
                                     <input type="hidden" name="id" value="{{ $product->id }}">
@@ -344,9 +346,9 @@
                                                 <input type="hidden" class="product-generated-variation-code" name="product_variation_code" data-product-id="{{ $product['id'] }}">
                                                 <input type="hidden" value="" class="product-exist-in-cart-list form-control w-50" name="key">
                                             </div>
-                                            <?php /*<div class="product-details-chosen-price-section d-none">
+                                            <div class="product-details-chosen-price-section">
                                                 <div
-                                                    class="d-none d-sm-flex justify-content-start align-items-center me-2">
+                                                    class="d-sm-flex justify-content-start align-items-center me-2">
                                                     <div
                                                         class="product-description-label text-dark font-bold text-capitalize">
                                                         <strong>{{translate('total_price')}}</strong> :
@@ -357,7 +359,7 @@
                                                         <small class="product-details-tax-amount"></small>)
                                                     </small> 
                                                 </div>
-                                            </div> */?>
+                                            </div>
                                         </div>
                                     </div>
 

@@ -203,7 +203,7 @@ class ProductService
 
     public function getSlug(object $request): string
     {
-        return Str::slug($request['name'][array_search('en', $request['lang'])], '-') . '-' . Str::random(6);
+        return Str::slug($request['name'][array_search('en', $request['lang'])], '-');
     }
 
     public function getChoiceOptions(object $request): array

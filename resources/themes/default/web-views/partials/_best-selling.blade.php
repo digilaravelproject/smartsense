@@ -57,7 +57,8 @@
                                             </span>
                                             </div>
                                         @endif
-                                        <?php /*<h4 class="widget-product-meta d-flex flex-wrap gap-8 align-items-center row-gap-0 mb-0 letter-spacing-0">
+                                        @if($bestSellItem->unit_price !== '' && $bestSellItem->unit_price > 0)
+                                        <h4 class="widget-product-meta d-flex flex-wrap gap-8 align-items-center row-gap-0 mb-0 letter-spacing-0">
                                             <span>
                                                 @if(getProductPriceByType(product: $bestSellItem, type: 'discount', result: 'value') > 0)
                                                     <del class="__color-9B9B9B __text-12px">
@@ -68,7 +69,8 @@
                                             <span class="text-accent text-dark">
                                                 {{ getProductPriceByType(product: $bestSellItem, type: 'discounted_unit_price', result: 'string') }}
                                             </span> 
-                                        </h4> */?>
+                                        </h4>
+                                    @endif
                                     </div>
                                 </div>
                             </a>

@@ -3,9 +3,10 @@
     <div class="product-single-hover style--category shadow-none">
         <div class="overflow-hidden position-relative">
             <div class=" inline_product clickable d-flex justify-content-center">
+                @if($product->unit_price !== '' && $product->unit_price > 0)
                 @if(getProductPriceByType(product: $product, type: 'discount', result: 'value') > 0)
                     <div class="d-flex">
-                    <span class="for-discount-value p-1 pl-2 pr-2 font-bold fs-13 d-none">
+                    <span class="for-discount-value p-1 pl-2 pr-2 font-bold fs-13">
                         <span class="direction-ltr d-block">
                             -{{ getProductPriceByType(product: $product, type: 'discount', result: 'string') }}
                         </span>
@@ -15,6 +16,7 @@
                     <div class="d-flex justify-content-end">
                         <span class="for-discount-value-null"></span>
                     </div>
+                @endif
                 @endif
                 <div class="d-block pb-0">
                     <a href="{{route('product',$product->slug)}}" class="d-block">
@@ -54,7 +56,7 @@
                         {{ $product['name'] }}
                     </a>
                 </h3>
-                <div class="justify-content-between ">
+                <div class="justify-content-between">
                     <h4 class="product-price d-flex flex-wrap gap-8 align-items-center row-gap-0 mb-0 letter-spacing-0">
                         @if(getProductPriceByType(product: $product, type: 'discount', result: 'value') > 0)
                             <del class="category-single-product-price">

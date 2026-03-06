@@ -192,11 +192,13 @@
                 <form class="mb-2 addToCartDynamicForm add-to-cart-details-form">
                     @csrf
 
-                    <div class="mb-3 d-none">
+                    @if($product->unit_price !== '' && $product->unit_price > 0)
+                    <div class="mb-3">
                         <span class="font-weight-normal text-accent d-flex align-items-end gap-2">
                             {!! getPriceRangeWithDiscount(product: $product) !!}
                         </span>
                     </div>
+                    @endif
 
                     <input type="hidden" name="id" value="{{ $product->id }}">
                     <div class="position-relative {{Session::get('direction') === "rtl" ? 'ml-n4' : 'mr-n4'}} mb-3">
@@ -329,7 +331,7 @@
                                 <input type="hidden" value="" class="product-exist-in-cart-list form-control w-50"
                                        name="key">
                             </div>
-                            <?php /*<div class="product-details-chosen-price-section d-none">
+                            <div class="product-details-chosen-price-section">
                                 <div class="d-flex justify-content-start align-items-center me-2">
                                     <div class="product-description-label text-dark font-bold text-capitalize">
                                         <strong>{{translate('total_price')}}</strong> :
@@ -340,7 +342,7 @@
                                         <small class="product-details-tax-amount"></small>)
                                     </small>
                                 </div>
-                            </div> */?>
+                            </div>
                         </div>
                     </div>
 

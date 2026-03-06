@@ -120,9 +120,11 @@
                                                     class="text-dark font-weight-bold d-block">
                                                     {{ Str::limit($product->name, 40) }}
                                                 </a>
-                                                <?php /*<span class="text-muted small">
-                                                    {{ \App\Utils\Helpers::currency_converter($product->unit_price) }}
-                                                </span> */?>
+                                                @if($product->unit_price !== '' && $product->unit_price > 0)
+                                                    <span class="text-muted small">
+                                                        {{ \App\Utils\Helpers::currency_converter($product->unit_price) }}
+                                                    </span>
+                                                @endif
                                             </td>
 
                                             {{-- Type --}}
@@ -177,12 +179,14 @@
                                             </td>
 
                                             {{-- Total Price Preview --}}
-                                            <?php /*<td class="align-middle text-right font-weight-bold text-primary">
-                                                <span id="price-{{ $key }}"
-                                                    data-unit-price="{{ $product->unit_price }}">
-                                                    {{ \App\Utils\Helpers::currency_converter($product->unit_price) }}
-                                                </span>
-                                            </td> */?>
+                                            @if($product->unit_price !== '' && $product->unit_price > 0)
+                                                <td class="align-middle text-right font-weight-bold text-primary">
+                                                    <span id="price-{{ $key }}"
+                                                        data-unit-price="{{ $product->unit_price }}">
+                                                        {{ \App\Utils\Helpers::currency_converter($product->unit_price) }}
+                                                    </span>
+                                                </td>
+                                            @endif
                                         </tr>
                                     @endforeach
                                 </tbody>

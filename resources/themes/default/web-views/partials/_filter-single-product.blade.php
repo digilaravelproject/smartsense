@@ -51,7 +51,8 @@
                     {{ $product['name'] }}
                 </a>
             </h4>
-            <div class="justify-content-between text-center mb-3 d-none">
+            @if($product->unit_price !== '' && $product->unit_price > 0)
+            <div class="justify-content-between text-center mb-3">
                 <h5 class="product-price text-center d-flex flex-wrap justify-content-center align-items-baseline gap-8 mb-0 lh-1 letter-spacing-0">
                     @if(getProductPriceByType(product: $product, type: 'discount', result: 'value') > 0)
                         <del class="category-single-product-price">
@@ -64,6 +65,7 @@
                     </span>
                 </h5>
             </div>
+            @endif
         </div>
     </div>
 </div>

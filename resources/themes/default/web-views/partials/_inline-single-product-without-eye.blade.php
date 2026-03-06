@@ -49,7 +49,8 @@
                     {{ $product['name'] }}
                 </a>
             </h3>
-            <div class="justify-content-between text-center d-none">
+            @if($product->unit_price !== '' && $product->unit_price > 0)
+            <div class="justify-content-between text-center">
                 <h4 class="product-price text-center d-flex flex-wrap justify-content-center align-items-center gap-8 mb-0 letter-spacing-0">
                     @if($product->discount > 0)
                         <del class="category-single-product-price">
@@ -63,6 +64,7 @@
                     </span>
                 </h4>
             </div>
+            @endif
         </div>
     </div>
 </div>

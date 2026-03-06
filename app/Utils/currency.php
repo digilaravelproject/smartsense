@@ -88,6 +88,11 @@ if (!function_exists('webCurrencyConverter')) {
      */
     function webCurrencyConverter(string|int|float|null $amount = 0): float|string
     {
+        // only show when a positive price exists (matches frontend requirement)
+        if ($amount === null || $amount === '' || floatval($amount) <= 0) {
+            return '';
+        }
+
         loadCurrency();
         $currencyModel = getWebConfig('currency_model');
         if ($currencyModel == MULTI_CURRENCY) {

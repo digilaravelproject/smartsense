@@ -88,12 +88,14 @@
             {{ Str::limit($product['name'], 25) }} <!-- Limit name length for better UI -->
         </a>
 
-        <?php /* <p class="price-wrap fw-medium">
-                    @if(getProductPriceByType(product: $product, type: 'discount', result: 'value') > 0)
-                <span class="price-old"><del>{{ webCurrencyConverter(amount: $product->unit_price) }}</del></span>
-            @endif
-            <span class="price-new">{{ getProductPriceByType(product: $product, type: 'discounted_unit_price', result: 'string') }}</span>
-        </p> */?>
+@if($product->unit_price !== '' && $product->unit_price > 0)
+            <p class="price-wrap fw-medium">
+                @if(getProductPriceByType(product: $product, type: 'discount', result: 'value') > 0)
+                    <span class="price-old"><del>{{ webCurrencyConverter(amount: $product->unit_price) }}</del></span>
+                @endif
+                <span class="price-new">{{ getProductPriceByType(product: $product, type: 'discounted_unit_price', result: 'string') }}</span>
+            </p>
+        @endif
 
         @php
             $tags = [];

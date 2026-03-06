@@ -20,13 +20,15 @@
                      alt="{{ $product['name'] }} hover">
             </a>
 
-        <?php /*@if(getProductPriceByType(product: $product, type: 'discount', result: 'value') > 0)
+        @if($product->unit_price !== '' && $product->unit_price > 0)
+            @if(getProductPriceByType(product: $product, type: 'discount', result: 'value') > 0)
                 <div class="on-sale-wrap">
                     <span class="on-sale-item">
                     -{{ getProductPriceByType(product: $product, type: 'discount', result: 'string') }}
                 </span>
                 </div>
-            @endif */?>
+            @endif
+        @endif
 
             <ul class="list-product-btn">
                 <li>
@@ -86,12 +88,14 @@
                 {{ Str::limit($product['name'], 25) }}
             </a>
 
-            <?php /*<p class="price-wrap fw-medium">
-                @if(getProductPriceByType(product: $product, type: 'discount', result: 'value') > 0)
-                    <span class="price-old"><del>{{ webCurrencyConverter(amount: $product->unit_price) }}</del></span>
-                @endif
-                <span class="price-new">{{ getProductPriceByType(product: $product, type: 'discounted_unit_price', result: 'string') }}</span>
-            </p> */?>
+            @if($product->unit_price !== '' && $product->unit_price > 0)
+                <p class="price-wrap fw-medium">
+                    @if(getProductPriceByType(product: $product, type: 'discount', result: 'value') > 0)
+                        <span class="price-old"><del>{{ webCurrencyConverter(amount: $product->unit_price) }}</del></span>
+                    @endif
+                    <span class="price-new">{{ getProductPriceByType(product: $product, type: 'discounted_unit_price', result: 'string') }}</span>
+                </p>
+            @endif
 
             @php
                 $tags = [];

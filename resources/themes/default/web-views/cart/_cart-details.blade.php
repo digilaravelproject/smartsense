@@ -9,7 +9,7 @@
             @php($isPhysicalProductExist = false)
         @endif
 
-        <div class="table-responsive d-none d-lg-block">
+        <div class="table-responsive d-lg-block">
             <table
                 class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table __cart-table">
                 <thead class="thead-light">
@@ -19,11 +19,11 @@
                             {{ translate('product')}}
                         </div>
                     </th>
-                    <th class="font-weight-bold pl-0 __w-15p text-capitalize d-none">{{ translate('unit_price')}}</th>
+                    <th class="font-weight-bold pl-0 __w-15p text-capitalize">{{ translate('unit_price')}}</th>
                     <th class="font-weight-bold __w-15p">
                         <span class="pl-3">{{ translate('qty')}}</span>
                     </th>
-                    <th class="font-weight-bold __w-15p text-end d-none">
+                    <th class="font-weight-bold __w-15p text-end">
                         <div class="pr-3">
                             {{ translate('total')}}
                         </div>
@@ -307,7 +307,8 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td class="{{ $checkProductStatus == 0?'custom-cart-opacity-50':'' }} __w-15p d-none">
+                                <td class="{{ $checkProductStatus == 0?'custom-cart-opacity-50':'' }} __w-15">
+                                    @if($cartItem['price'] > 0)
                                     <div class="text-center">
                                         <div class="fw-semibold">
                                             {{ webCurrencyConverter(amount: $cartItem['price']-$cartItem['discount']) }}
@@ -322,6 +323,7 @@
                                             @endif
                                              </span>
                                     </div>
+                                    @endif
                                 </td>
                                 <td class="__w-15p text-center">
 
@@ -371,10 +373,12 @@
                                         </div>
                                     @endif
                                 </td>
-                                <td class="__w-15p text-end d-none {{ $checkProductStatus == 0?'custom-cart-opacity-50':'' }}">
+                                <td class="__w-15p text-end {{ $checkProductStatus == 0?'custom-cart-opacity-50':'' }}">
+                                    @if($cartItem['price'] > 0)
                                     <div>
                                         {{ webCurrencyConverter(amount: ($cartItem['price']-$cartItem['discount'])*$cartItem['quantity']) }}
                                     </div>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
@@ -620,18 +624,22 @@
                                     @endif
                                     <div class="d-flex flex-wrap column-gap-2">
                                         <div class="text-nowrap text-muted">{{ translate('unit_price')}} :</div>
+                                        @if($cartItem['price'] > 0)
                                         <div class="text-start d-flex gap-1 flex-wrap">
                                             <div
                                                 class="fw-semibold">{{ webCurrencyConverter(amount: $cartItem['price']-$cartItem['discount']) }}</div>
                                         </div>
+                                        @endif
                                     </div>
 
                                     <div class="d-flex gap-2">
                                         <div class="text-nowrap text-muted">{{ translate('total')}} :</div>
+                                        @if($cartItem['price'] > 0)
                                         <div class="font-semi-bold">
                                             {{ webCurrencyConverter(amount: ($cartItem['price']-$cartItem['discount'])*$cartItem['quantity']) }}
 
                                         </div>
+                                        @endif
                                         <span class="text-nowrap fs-10 mt-1px">
                                             @if ($cartItem->tax_model === "exclude")
                                                 ({{ translate('tax')}}

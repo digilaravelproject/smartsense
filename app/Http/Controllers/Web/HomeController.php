@@ -46,6 +46,7 @@ class HomeController extends Controller
     public function index(): View
     {
         $themeName = theme_root_path();
+
         return match ($themeName) {
             'default' => self::default_theme(),
             'theme_aster' => self::theme_aster(),
@@ -92,6 +93,7 @@ class HomeController extends Controller
                         ->where('products.status', 1)
                         ->where('deal_of_the_days.status', 1)
                         ->first();
+                        
         return view(VIEW_FILE_NAMES['home'],
             compact(
                 'flashDeal', 'featuredProductsList', 'topRatedProducts', 'bestSellProduct', 'latestProductsList', 'categories', 'brands',
