@@ -9562,4 +9562,7 @@ return [
 	"Variant_Image" => "Variant Image",
 	"Variant_Description" => "Variant Description",
 	"Enter_description" => "Enter description",
+	"please_" => "Please ",
+	"_contact_us" => " contact us",
+	"_for_any_queries" => " for any queries",
 ];

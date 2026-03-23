@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Traits\MaintenanceModeTrait;
 use App\Utils\CategoryManager;
 use App\Utils\Helpers;
+use App\Mail\ContactUsMail;
 use App\Events\DigitalProductOtpVerificationEvent;
 use App\Http\Controllers\Controller;
 use App\Models\OfflinePaymentMethod;
@@ -1362,7 +1363,46 @@ class WebController extends Controller
         $contact->subject = $request['subject'];
         $contact->message = $request['message'];
         $contact->save();
-        Toastr::success(translate('Your_Message_Send_Successfully'));
+
+        /*
+        |--------------------------------------------------------------------------
+        | Send Emails
+        |--------------------------------------------------------------------------
+        */
+
+        try {
+
+            /*
+            | Customer Thank You Email
+            */
+            if (!empty($contact->email)) {
+
+                Mail::to($contact->email)
+                    ->send(new ContactUsMail($contact, 'customer'));
+
+                Log::info('Contact mail sent to customer', [
+                    'email' => $contact->email
+                ]);
+            }
+
+            /*
+            | Admin Email
+            */
+            Mail::to('boi@smartsense.asia')
+                ->send(new ContactUsMail($contact, 'admin'));
+
+            Log::info('Contact mail sent to admin');
+
+        } catch (\Throwable $e) {
+
+            Log::error('Contact mail failed', [
+                'error' => $e->getMessage()
+            ]);
+
+        }
+
+        Toastr::success('Your Message Send Successfully');
+
         return back();
     }
 
