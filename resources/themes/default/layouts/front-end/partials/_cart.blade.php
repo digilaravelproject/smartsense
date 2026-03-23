@@ -95,7 +95,7 @@
                         <div class="widget-cart-item">
                             <div class="media">
                                 <a class="d-block me-2 position-relative overflow-hidden"
-                                   href="{{route('product',$cartItem['slug'])}}">
+                                   href="{{$cartItem['details_url']}}">
                                     <img width="64" class="{{ $product ? ($product->status == 0?'blur-section':'') : 'blur-section' }}"
                                          src="{{ getStorageImages(path: $product->thumbnail_full_url, type: 'backend-product') }}"
                                          alt="{{ translate('product') }}"/>
@@ -109,7 +109,7 @@
                                     class="media-body min-height-0 d-flex align-items-center {{ $product ? ($product->status == 0?'blur-section':'') : 'blur-section' }}">
                                     <div class="w-0 flex-grow-1">
                                         <h6 class="widget-product-title mb-0 mr-2">
-                                            <a href="{{route('product',$cartItem['slug'])}}" class="line--limit-1">
+                                            <a href="{{$cartItem['details_url']}}" class="line--limit-1">
                                                 {{$cartItem['name']}}
                                             </a>
                                         </h6>

@@ -59,7 +59,7 @@
                                                     <div class="auto-col gap-3 minWidth-3-75rem"
                                                          style="--maxWidth: {{ count($vendorData->products)==1 ? '6.5rem' : '1fr' }}">
                                                         @foreach($vendorData->products as $product)
-                                                            <a href="{{route('product',$product['slug'])}}"
+                                                            <a href="{{$product['details_url']}}"
                                                                class="store-product d-flex flex-column gap-2 align-items-center">
                                                                 <div class="store-product__top border rounded">
                                                                     <span class="store-product__action preventDefault get-quick-view"

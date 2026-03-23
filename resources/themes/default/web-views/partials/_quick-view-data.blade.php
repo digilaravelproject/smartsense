@@ -7,7 +7,7 @@
 <div class="modal-header rtl">
     <div>
         <h4 class="modal-title product-title">
-            <a class="product-title2" href="{{route('product',$product->slug)}}" data-toggle="tooltip"
+            <a class="product-title2" href="{{$product->details_url}}" data-toggle="tooltip"
                data-placement="right"
                title="Go to product page">{{$product['name']}}
                 <i class="czi-arrow-{{ Session::get('direction') === "rtl" ? 'left' : 'right' }} ms-2 font-size-lg mr-0"></i>
@@ -126,7 +126,7 @@
 
         <div class="col-lg-7 col-md-8 col-12 mt-md-0 mt-sm-3 web-direction">
             <div class="details __h-100 product-cart-option-container">
-                <a href="{{route('product',$product->slug)}}" class="h3 mb-2 product-title">{{$product->name}}</a>
+                <a href="{{$product->details_url}}" class="h3 mb-2 product-title">{{$product->name}}</a>
 
                 <div class="d-flex flex-wrap align-items-center mb-2 pro">
                     <div class="star-rating me-2">

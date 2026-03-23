@@ -243,7 +243,7 @@
                                                             </div>
                                                             <div class="media-body d-flex gap-1 flex-column {{ $checkProductStatus == 0 ? 'custom-cart-opacity-50' : '' }}">
                                                                 <h6 class="text-truncate text-capitalize width--20ch">
-                                                                    <a href="{{ $checkProductStatus ? route('product', $cartItem['slug']):'javascript:' }}">{{$cartItem['name']}}</a>
+                                                                    <a href="{{ $checkProductStatus ? $cartItem['details_url']:'javascript:' }}">{{$cartItem['name']}}</a>
                                                                 </h6>
 
                                                                 @if(!empty($cartItem['variant']))
@@ -408,7 +408,7 @@
                                                     </div>
                                                     <div class="media-body d-flex gap-1 flex-column {{ $checkProductStatus == 0 ? 'custom-cart-opacity-50' : '' }}">
                                                         <h6 class="text-truncate text-capitalize width--20ch">
-                                                            <a href="{{ $checkProductStatus ? route('product', $cartItem['slug']) : 'javascript:' }}">
+                                                            <a href="{{ $checkProductStatus ? $cartItem['details_url'] : 'javascript:' }}">
                                                                 {{ $cartItem['name'] }}
                                                             </a>
                                                         </h6>

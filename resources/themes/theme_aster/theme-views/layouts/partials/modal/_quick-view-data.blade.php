@@ -22,28 +22,28 @@
                                         <li>
                                             <a href="javascript:"
                                                class="share-on-social-media"
-                                               data-action="{{route('product',$product->slug)}}"
+                                               data-action="{{$product->details_url}}"
                                                data-social-media-name="facebook.com/sharer/sharer.php?u=">
                                                 <i class="bi bi-facebook"></i>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="javascript:" class="share-on-social-media"
-                                               data-action="{{route('product',$product->slug)}}"
+                                               data-action="{{$product->details_url}}"
                                                data-social-media-name="twitter.com/intent/tweet?text=">
                                                 <i class="bi bi-twitter"></i>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="javascript:" class="share-on-social-media"
-                                               data-action="{{route('product',$product->slug)}}"
+                                               data-action="{{$product->details_url}}"
                                                data-social-media-name="linkedin.com/shareArticle?mini=true&url=">
                                                 <i class="bi bi-linkedin"></i>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="javascript:" class="share-on-social-media"
-                                               data-action="{{route('product',$product->slug)}}"
+                                               data-action="{{$product->details_url}}"
                                                data-social-media-name="api.whatsapp.com/send?text=">
                                                 <i class="bi bi-whatsapp"></i>
                                             </a>

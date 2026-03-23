@@ -103,7 +103,7 @@
                                 </div>
                                 <div class="media-body">
                                     <h6 class="mb-1 {{ $product && $product->status == 0?'blur-section':'' }}">
-                                        <a href="{{ $product && $product->status == 1? route('product',$cartItem['slug']) :'javascript:'}}">{{Str::limit($cartItem['name'],30)}}</a>
+                                        <a href="{{ $product && $product->status == 1? $cartItem['details_url'] :'javascript:'}}">{{Str::limit($cartItem['name'],30)}}</a>
                                     </h6>
                                     @if(!empty($cartItem['variant']))
                                         <div>

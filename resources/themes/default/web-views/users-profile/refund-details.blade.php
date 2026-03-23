@@ -5,7 +5,7 @@
             @if (isset($refund->product))
                 @php($product = $refund->product)
                 <div class="position-relative">
-                    <img class="d-block get-view-by-onclick" data-link="{{route('product',$product['slug'])}}"
+                    <img class="d-block get-view-by-onclick" data-link="{{$product['details_url']}}"
                          src="{{ getStorageImages(path: $product->thumbnail_full_url, type: 'product') }}"
                          alt="{{ translate('product') }}" width="100">
 
@@ -21,7 +21,7 @@
                 </div>
 
                 <div class="media-body">
-                    <a href="{{route('product',[$product['slug']])}}">
+                    <a href="{{$product['details_url']}}">
                         <h6 class="mb-1">
                             {{Str::limit($product['name'],40)}}
                         </h6>

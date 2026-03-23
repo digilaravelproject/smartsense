@@ -125,7 +125,7 @@
                                         </span>
                                     </h4>
                                     <button class="btn btn--primary font-bold px-4 rounded-10 text-uppercase get-view-by-onclick"
-                                            data-link="{{ route('product',$recommendedProduct->slug) }}">
+                                            data-link="{{ $recommendedProduct->details_url }}">
                                         {{translate('buy_now')}}
                                     </button>
                                 </div>

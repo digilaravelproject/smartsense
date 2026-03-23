@@ -45,8 +45,11 @@ class ProductDetailsController extends Controller
      * @param string $slug
      * @return View|RedirectResponse
      */
-    public function index(string $slug): View|RedirectResponse
+    public function index(string $category, string $slug = null): View|RedirectResponse
     {
+        if ($slug === null) {
+            $slug = $category;
+        }
         $theme_name = theme_root_path();
 
         return match ($theme_name) {

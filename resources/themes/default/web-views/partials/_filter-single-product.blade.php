@@ -15,7 +15,7 @@
                 </div>
             @endif
             <div class="p-10px pb-0">
-                <a href="{{route('product',$product->slug)}}" class="w-100">
+                <a href="{{$product->details_url}}" class="w-100">
                     <img alt="" src="{{ getStorageImages(path: $product->thumbnail_full_url, type: 'product') }}">
                 </a>
             </div>
@@ -47,7 +47,7 @@
             </div>
             @endif
             <h4 class="text-center mb-1 lh-1 letter-spacing-0">
-                <a href="{{route('product',$product->slug)}}">
+                <a href="{{$product->details_url}}">
                     {{ $product['name'] }}
                 </a>
             </h4>

@@ -41,7 +41,7 @@
                                                         <ul>
                                                             <li>
                                                                 <a href="javascript:" class="share-on-social-media"
-                                                                   data-action="{{route('product',$product->slug)}}"
+                                                                   data-action="{{$product->details_url}}"
                                                                    data-social-media-name="facebook.com/sharer/sharer.php?u=">
                                                                     <i class="bi bi-facebook"></i>
                                                                 </a>
@@ -49,7 +49,7 @@
                                                             <li>
                                                                 <a href="javascript:"
                                                                    class="share-on-social-media"
-                                                                   data-action="{{route('product',$product->slug)}}"
+                                                                   data-action="{{$product->details_url}}"
                                                                    data-social-media-name="twitter.com/intent/tweet?text=">
                                                                     <svg xmlns="http://www.w3.org/2000/svg" width="12"
                                                                          height="12" fill="currentColor"
@@ -62,7 +62,7 @@
                                                             <li>
                                                                 <a href="javascript:"
                                                                    class="share-on-social-media"
-                                                                   data-action="{{route('product',$product->slug)}}"
+                                                                   data-action="{{$product->details_url}}"
                                                                    data-social-media-name="linkedin.com/shareArticle?mini=true&url=">
                                                                     <i class="bi bi-linkedin"></i>
                                                                 </a>
@@ -70,7 +70,7 @@
                                                             <li>
                                                                 <a href="javascript:"
                                                                    class="share-on-social-media"
-                                                                   data-action="{{route('product',$product->slug)}}"
+                                                                   data-action="{{$product->details_url}}"
                                                                    data-social-media-name="api.whatsapp.com/send?text=">
                                                                     <i class="bi bi-whatsapp"></i>
                                                                 </a>
@@ -712,7 +712,7 @@
                             <div class="d-flex flex-wrap gap-3">
                                 @foreach($moreProductFromSeller as $key => $item)
                                     <div class="card border-primary-light flex-grow-1">
-                                        <a href="{{route('product',$item->slug)}}"
+                                        <a href="{{$item->details_url}}"
                                            class="media align-items-centr gap-3 p-3 ">
                                             <div class="avatar size-4-375rem">
                                                 <img class="img-fit dark-support rounded img-fluid overflow-hidden"

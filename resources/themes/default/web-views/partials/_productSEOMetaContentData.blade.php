@@ -30,8 +30,8 @@
     <meta property="og:image" content="{{ $metaContentData?->image_full_url['path'] }}">
     <meta name="twitter:image" content="{{ $metaContentData?->image_full_url['path'] }}">
 
-    <meta property="og:url" content="{{ route('product', [$productDetails->slug]) }}">
-    <meta name="twitter:url" content="{{ route('product', [$productDetails->slug]) }}">
+    <meta property="og:url" content="{{ $productDetails->details_url }}">
+    <meta name="twitter:url" content="{{ $productDetails->details_url }}">
 
     @if($metaContentData?->index != 'noindex')
         <meta name="robots" content="index">

@@ -209,13 +209,13 @@
                                                                         </span>
                                                                 @endif
                                                                 <img class="d-block get-view-by-onclick aspect-1 object-cover"
-                                                                     data-link="{{ route('product',$product['slug']) }}"
+                                                                     data-link="{{ $product['details_url'] }}"
                                                                      src="{{ getStorageImages(path: $detail?->productAllStatus?->thumbnail_full_url, type: 'product') }}"
                                                                      alt="{{ translate('product') }}" width="100">
                                                             </div>
 
                                                             <div class="media-body">
-                                                                <a href="{{route('product',[$product['slug']])}}" class="fs-14 font-semi-bold">
+                                                                <a href="{{$product['details_url']}}" class="fs-14 font-semi-bold">
                                                                     {{isset($product['name']) ? Str::limit($product['name'], 60) : ''}}
                                                                 </a>
                                                                 @if($detail->refund_request == 1)
@@ -347,13 +347,13 @@
                                                             </span>
                                                         @endif
                                                         <img class="d-block get-view-by-onclick aspect-1 object-cover"
-                                                             data-link="{{ route('product',$product['slug']) }}"
+                                                             data-link="{{ $product['details_url'] }}"
                                                              src="{{ getStorageImages(path: $detail?->productAllStatus?->thumbnail_full_url, type: 'product') }}"
                                                              alt="{{ translate('product') }}" width="80">
                                                     </div>
 
                                                     <div class="media-body">
-                                                        <a href="{{route('product',[$product['slug']])}}" class="fs-14">
+                                                        <a href="{{$product['details_url']}}" class="fs-14">
                                                             {{isset($product['name']) ? Str::limit($product['name'],40) : ''}}
                                                         </a>
                                                         @if($detail->refund_request == 1)

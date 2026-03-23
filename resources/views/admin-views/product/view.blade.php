@@ -33,7 +33,7 @@
                             </div>
                             <div class="d-flex gap-1 flex-wrap justify-content-center">
                                 @if ($productActive && $isActive)
-                                    <a href="{{ route('product', $product['slug']) }}"
+                                    <a href="{{ $product['details_url'] }}"
                                        class="btn btn-outline--primary mr-1 mt-2" target="_blank">
                                         <i class="tio-globe"></i>
                                         {{ translate('view_live') }}

@@ -105,7 +105,7 @@
                                         </div>
                                     </div>
                                     <div class="d-flex">
-                                        <a href="{{route('product', $recommendedProduct->slug)}}"
+                                        <a href="{{$recommendedProduct->details_url}}"
                                            class="btn btn-primary text-capitalize">{{ translate('buy_now') }}</a>
                                     </div>
                                 </div>
@@ -130,7 +130,7 @@
                         </div>
                         <div class="auto-col just-for-you gap-3">
                             @foreach($justForYouProducts as $key => $product)
-                                <a href="{{route('product',$product->slug)}}"
+                                <a href="{{$product->details_url}}"
                                    class="hover-zoom-in d-flex flex-column gap-2 align-items-center">
                                     <div class="position-relative">
                                         @if(getProductPriceByType(product: $product, type: 'discount', result: 'value') > 0)

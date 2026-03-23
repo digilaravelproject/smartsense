@@ -99,7 +99,7 @@
                                                                 </div>
                                                                 <div class="media-body d-flex gap-1 flex-column">
                                                                     <h6>
-                                                                        <a href="{{route('product',[$product['slug']])}}">
+                                                                        <a href="{{$product['details_url']}}">
                                                                             {{isset($product['name']) ? Str::limit($product['name'],40) : ''}}
                                                                         </a>
                                                                         @if($detail->refund_request == 1)

@@ -19,7 +19,7 @@
                 @endif
                 @endif
                 <div class="d-block pb-0">
-                    <a href="{{route('product',$product->slug)}}" class="d-block">
+                    <a href="{{$product->details_url}}" class="d-block">
                         <img alt=""
                              src="{{ getStorageImages(path: $product->thumbnail_full_url, type: 'product') }}">
                     </a>
@@ -52,7 +52,7 @@
                     </div>
                 @endif
                 <h3 class="mb-1 letter-spacing-0">
-                    <a href="{{route('product',$product->slug)}}" class="text-capitalize fw-semibold">
+                    <a href="{{$product->details_url}}" class="text-capitalize fw-semibold">
                         {{ $product['name'] }}
                     </a>
                 </h3>

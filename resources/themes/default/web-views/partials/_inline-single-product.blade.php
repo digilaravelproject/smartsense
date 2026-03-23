@@ -1,7 +1,7 @@
 @if(isset($product))
     @php
         $overallRating = getOverallRating($product->reviews);
-        $productUrl = route('product', $product->slug);
+        $productUrl = $product->details_url;
         // Correctly determine hover image URL
         $hoverImageUrl = $product->thumbnail_full_url; // Default to thumbnail
         if (!empty($product->images_full_url) && isset($product->images_full_url[1])) {

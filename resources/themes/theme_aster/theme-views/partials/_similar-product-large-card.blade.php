@@ -1,7 +1,7 @@
 @php use App\Utils\Helpers;use App\Utils\ProductManager;use Illuminate\Support\Str; @endphp
 @php($overallRating = $product->reviews ? getOverallRating($product->reviews) : 0)
 <div class="product border rounded text-center d-flex flex-column gap-10"
-     onclick="location.href='{{route('product',$product->slug)}}'">
+     onclick="location.href='{{$product->details_url}}'">
     <div class="product__top width--100 height-12-5-rem aspect-1">
         @if($product->discount > 0)
             <span class="product__discount-badge">

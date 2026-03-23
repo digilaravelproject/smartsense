@@ -1,6 +1,6 @@
 @php use App\Utils\Helpers;use App\Utils\ProductManager;use Illuminate\Support\Str; @endphp
 @php($overallRating = $product->reviews ? getOverallRating($product->reviews) : 0)
-<div class="product d-flex flex-column gap-10 get-view-by-onclick" data-link="{{route('product',$product->slug)}}">
+<div class="product d-flex flex-column gap-10 get-view-by-onclick" data-link="{{$product->details_url}}">
     <div class="product__top border rounded">
         @if(getProductPriceByType(product: $product, type: 'discount', result: 'value') > 0)
             <span class="product__discount-badge">

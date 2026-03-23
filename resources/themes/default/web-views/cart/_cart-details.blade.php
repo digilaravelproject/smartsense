@@ -261,7 +261,7 @@
 
                                         <div class="d-flex gap-3">
                                             <div class="">
-                                                <a href="{{ $checkProductStatus == 1 ? route('product', $cartItem['slug']) : 'javascript:'}}"
+                                                <a href="{{ $checkProductStatus == 1 ? $cartItem['details_url'] : 'javascript:'}}"
                                                    class="position-relative overflow-hidden">
                                                     <img class="rounded __img-62 {{ $checkProductStatus == 0?'custom-cart-opacity-50':'' }}"
                                                          src="{{ getStorageImages(path: $cartItem?->product?->thumbnail_full_url, type: 'product') }}"
@@ -276,7 +276,7 @@
                                             <div class="d-flex flex-column gap-1">
                                                 <div
                                                     class="text-break __line-2 __w-18rem {{ $checkProductStatus == 0?'custom-cart-opacity-50':'' }}">
-                                                    <a href="{{ $checkProductStatus == 1 ? route('product', $cartItem['slug']) : 'javascript:'}}">
+                                                    <a href="{{ $checkProductStatus == 1 ? $cartItem['details_url'] : 'javascript:'}}">
                                                         {{$cartItem['name']}}
                                                     </a>
                                                     @if(!empty($cartItem['variant']))
@@ -600,7 +600,7 @@
                             <input type="checkbox" class="shop-item-check shop-item-check-mobile" value="{{ $cartItem['id'] }}" {{ $cartItem['is_checked'] ? 'checked' : '' }}>
                             <div class="d-flex align-items-center gap-3">
                                 <div class="">
-                                    <a href="{{ $checkProductStatus == 1 ? route('product',$cartItem['slug']) : 'javascript:'}}"
+                                    <a href="{{ $checkProductStatus == 1 ? $cartItem['details_url'] : 'javascript:'}}"
                                     class="position-relative overflow-hidden">
                                         <img class="rounded __img-48 {{ $checkProductStatus == 0?'custom-cart-opacity-50':'' }}"
                                             src="{{ getStorageImages(path: $cartItem?->product?->thumbnail_full_url, type: 'product') }}"
@@ -614,7 +614,7 @@
                                 </div>
                                 <div class="d-flex flex-column gap-1 {{ $checkProductStatus == 0?'custom-cart-opacity-50':'' }}">
                                     <div class="text-break __line-2">
-                                        <a href="{{ $checkProductStatus == 1 ? route('product',$cartItem['slug']) : 'javascript:'}}">{{$cartItem['name']}}</a>
+                                        <a href="{{ $checkProductStatus == 1 ? $cartItem['details_url'] : 'javascript:'}}">{{$cartItem['name']}}</a>
                                     </div>
 
                                     @if(!empty($cartItem['variant']))

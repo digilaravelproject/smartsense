@@ -298,7 +298,8 @@ Route::group(['namespace' => 'Web', 'middleware' => ['maintenance_mode', 'guestC
     });
 
     Route::controller(ProductDetailsController::class)->group(function () {
-        Route::get('/product/{slug}', 'index')->name('product');
+        Route::get('/product/{slug}', 'index')->name('product.fallback');
+        Route::get('/{category}/{slug}', 'index')->name('product');
     });
 
     Route::controller(ProductListController::class)->group(function () {

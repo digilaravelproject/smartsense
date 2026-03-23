@@ -13,7 +13,7 @@
                                     src="{{ getStorageImages(path: $product->thumbnail_full_url, type: 'product') }}">
                             </div>
                             <div class="media-body">
-                                <a href="{{route('product',$product['slug'])}}">
+                                <a href="{{$product['details_url']}}">
                                     <h6 class="text-truncate text-capitalize width--20ch link-hover-base">{{$product['name']}}</h6>
                                 </a>
                             </div>
@@ -78,7 +78,7 @@
                             class="img-fit dark-support rounded" alt="">
                     </div>
                     <div class="media-body d-flex flex-column gap-1">
-                        <a href="{{route('product',$product['slug'])}}">
+                        <a href="{{$product['details_url']}}">
                             <h6 class="text-truncate text-capitalize width--20ch link-hover-base">{{$product['name']}}</h6>
                         </a>
                         <div>

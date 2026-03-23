@@ -1,6 +1,6 @@
 @if(isset($product))
     @php($overallRating = getOverallRating($product->reviews))
-    <div class="flash_deal_product get-view-by-onclick" data-link="{{ route('product',$product->slug) }}">
+    <div class="flash_deal_product get-view-by-onclick" data-link="{{ $product->details_url }}">
         @if($product->discount > 0)
             <div class="d-flex">
             <span class="for-discount-value p-1 pl-2 pr-2 font-bold fs-13 d-none">
@@ -23,7 +23,7 @@
             </div>
             <div class="flash_deal_product_details pl-3 pr-3 pr-1 d-flex mt-3">
                 <div>
-                    <a href="{{route('product',$product->slug)}}" class="text-capitalize fw-semibold">
+                    <a href="{{$product->details_url}}" class="text-capitalize fw-semibold">
                         {{ Str::limit($product['name'], 23) }}
                     </a>
                     @if($overallRating[0] != 0 )

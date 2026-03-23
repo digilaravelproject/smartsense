@@ -169,7 +169,7 @@ class Product extends Model
         'digital_file_ready_storage_type' => 'string',
     ];
 
-    protected $appends = ['is_shop_temporary_close', 'thumbnail_full_url', 'preview_file_full_url', 'color_images_full_url', 'meta_image_full_url', 'images_full_url', 'digital_file_ready_full_url'];
+    protected $appends = ['is_shop_temporary_close', 'thumbnail_full_url', 'preview_file_full_url', 'color_images_full_url', 'meta_image_full_url', 'images_full_url', 'digital_file_ready_full_url', 'details_url'];
 
     public function translations(): MorphMany
     {
@@ -423,6 +423,25 @@ class Product extends Model
              }
          }
         return $images;
+    }
+
+    public function getCategorySlugAttribute(): string
+    {
+        if ($this->relationLoaded('category') && $this->category) {
+            return $this->category->slug;
+        }
+        $slug = \Illuminate\Support\Facades\Cache::remember('category_slug_' . $this->category_id, 3600, function () {
+            return \App\Models\Category::where('id', $this->category_id)->value('slug');
+        });
+        return $slug ?: 'product';
+    }
+
+    public function getDetailsUrlAttribute(): string
+    {
+        return route('product', [
+            'category' => $this->category_slug,
+            'slug' => $this->slug
+        ]);
     }
 
     protected static function boot(): void

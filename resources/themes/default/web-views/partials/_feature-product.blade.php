@@ -1,6 +1,6 @@
 @php
     $overallRating = getOverallRating($product->reviews);
-    $productUrl = route('product', $product->slug);
+    $productUrl = $product->details_url;
 
     // Correctly determine hover image URL
     $hoverImageUrl = $product->thumbnail_full_url; // Default to thumbnail

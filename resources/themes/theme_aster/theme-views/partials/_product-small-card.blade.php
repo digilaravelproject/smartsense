@@ -1,7 +1,7 @@
 @php use App\Utils\Helpers;use App\Utils\ProductManager;use Illuminate\Support\Str; @endphp
 @php($overallRating = getOverallRating($product->reviews))
 <div class="product border rounded text-center d-flex flex-column gap-10 get-view-by-onclick"
-     data-link="{{route('product',$product->slug)}}">
+     data-link="{{$product->details_url}}">
     <div class="product__top width--100 height-12-5-rem aspect-1">
         @if(getProductPriceByType(product: $product, type: 'discount', result: 'value') > 0)
             <span class="product__discount-badge">
@@ -63,10 +63,10 @@
         </div>
 
         <h6 class="product__title text-truncate width--80">
-            <a href="{{route('product',$product->slug)}}"
+            <a href="{{$product->details_url}}"
                class="text-capitalize text-truncate">{{ $product['name'] }}</a>
         </h6>
-        <a href="{{route('product',$product->slug)}}">
+        <a href="{{$product->details_url}}">
             <div class="product__price d-flex flex-wrap column-gap-2">
                 @if(getProductPriceByType(product: $product, type: 'discount', result: 'value') > 0)
                     <del class="product__old-price">{{webCurrencyConverter($product->unit_price)}}</del>

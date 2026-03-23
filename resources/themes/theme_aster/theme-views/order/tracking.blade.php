@@ -291,8 +291,8 @@
                                                     <img class="rounded border" alt="{{ translate('product') }}"
                                                          src="{{ getStorageImages(path: $orderDetail?->productAllStatus?->thumbnail_full_url, type: 'product') }}"
                                                          width="100px">
-                                                    <div class="get-view-by-onclick" data-link="{{route('product',$productDetails->slug)}}">
-                                                        <a href="{{route('product',$productDetails->slug)}}">
+                                                    <div class="get-view-by-onclick" data-link="{{$productDetails->details_url}}">
+                                                        <a href="{{$productDetails->details_url}}">
                                                             <h6 class="title-color mb-2">{{Str::limit($productDetails->name,30)}}</h6>
                                                         </a>
                                                         <div class="d-flex flex-column">

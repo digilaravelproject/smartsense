@@ -116,7 +116,7 @@
 
                                             {{-- Name & Price --}}
                                             <td class="align-middle">
-                                                <a href="{{ route('product', $product->slug) }}" target="_blank"
+                                                <a href="{{ $product->details_url }}" target="_blank"
                                                     class="text-dark font-weight-bold d-block">
                                                     {{ Str::limit($product->name, 40) }}
                                                 </a>

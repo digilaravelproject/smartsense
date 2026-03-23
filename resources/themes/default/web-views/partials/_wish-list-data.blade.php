@@ -4,7 +4,7 @@
             @if( $wishlist->productFullInfo)
                 <div class="wishlist-item" id="row_id{{$product->id}}">
                     <div class="wishlist-img position-relative">
-                        <a href="{{route('product',$product->slug)}}" class="d-block h-100">
+                        <a href="{{$product->details_url}}" class="d-block h-100">
                             <img class="__img-full"
                                  src="{{ getStorageImages(path: $product->thumbnail_full_url, type: 'product') }}"
                                  alt="{{ translate('wishlist') }}">
@@ -20,7 +20,7 @@
                     <div class="wishlist-cont align-items-end align-items-sm-center">
                         <div class="wishlist-text">
                             <div class="font-name">
-                                <a class="fs-12 font-semibold line-height-16" href="{{route('product',$product['slug'])}}">{{$product['name']}}</a>
+                                <a class="fs-12 font-semibold line-height-16" href="{{$product['details_url']}}">{{$product['name']}}</a>
                             </div>
                             @if($brand_setting && $product->product_type != 'digital')
                                 <span class="sellerName fs-12"> {{translate('brand')}} : <span
