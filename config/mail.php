@@ -133,4 +133,10 @@ return [
 
     'log_channel' => env('MAIL_LOG_CHANNEL'),
 
+    'admin_emails' => [
+        env('ADMIN_EMAILS1'),
+        env('ADMIN_EMAILS2'),
+        env('ADMIN_EMAILS3'),
+    ],
+
 ];

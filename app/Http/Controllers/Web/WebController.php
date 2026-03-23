@@ -712,7 +712,10 @@ class WebController extends Controller
 
                     // Admin Email
                     try {
-                        Mail::to('boi@smartsense.asia')
+
+                        $adminEmails = config('mail.admin_emails');
+
+                        Mail::to($adminEmails)
                             ->send(new OrderInvoiceMail($order, $customer, $items));
 
                         Log::info('Invoice mail sent to admin', [
@@ -1388,7 +1391,10 @@ class WebController extends Controller
             /*
             | Admin Email
             */
-            Mail::to('boi@smartsense.asia')
+
+            $adminEmails = config('mail.admin_emails');
+            
+            Mail::to($adminEmails)
                 ->send(new ContactUsMail($contact, 'admin'));
 
             Log::info('Contact mail sent to admin');
