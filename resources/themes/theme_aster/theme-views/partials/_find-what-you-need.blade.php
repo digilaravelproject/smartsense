@@ -118,7 +118,7 @@
                                                                 class="text-muted">{{$category['product_count']}} {{translate('products')}}</div>
                                                         </div>
 
-                                                        <a href="{{route('products',['category_id'=> $category['id'],'data_from'=>'category','page'=>1])}}"
+                                                        <a href="{{$category->list_url}}"
                                                            class="btn-link">{{translate('view_all')}}<i
                                                                 class="bi bi-chevron-right text-primary"></i></a>
                                                     </div>
@@ -180,7 +180,7 @@
                                                                     class="text-muted">{{$category['product_count']}} {{translate('products')}}</div>
                                                             </div>
 
-                                                            <a href="{{route('products',['category_id'=> $category['id'],'data_from'=>'category','page'=>1])}}"
+                                                            <a href="{{$category->list_url}}"
                                                                class="btn-link">{{translate('view_all')}}<i
                                                                     class="bi bi-chevron-right text-primary"></i></a>
                                                         </div>

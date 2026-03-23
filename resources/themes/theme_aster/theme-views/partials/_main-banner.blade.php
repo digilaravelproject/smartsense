@@ -11,7 +11,7 @@
                             <ul class="dropdown-menu dropdown-menu--static bs-dropdown-min-width--auto">
                                 @foreach($categories as $key=>$category)
                                     <li class="{{ $category->childes->count() > 0 ? 'menu-item-has-children' : '' }}">
-                                        <a href="{{route('products',['category_id'=> $category['id'],'data_from'=>'category','page'=>1])}}">
+                                        <a href="{{$category->list_url}}">
                                             {{$category['name']}}
                                         </a>
                                         @if ($category->childes->count() > 0)

@@ -107,7 +107,13 @@ class Category extends Model
         $value = $this->icon;
         return $this->storageLink('category',$value,$this->icon_storage_type ?? 'public');
     }
-    protected $appends = ['icon_full_url'];
+
+    public function getListUrlAttribute(): string
+    {
+        return route('products.category', ['category_slug' => $this->slug]);
+    }
+
+    protected $appends = ['icon_full_url', 'list_url'];
 
     protected static function boot(): void
     {

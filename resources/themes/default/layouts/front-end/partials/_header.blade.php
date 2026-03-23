@@ -92,7 +92,7 @@
                 </a>
 
                 <div class="input-group-overlay mx-lg-4 search-form-mobile text-align-direction">
-                    <form action="{{ route('products') }}" type="submit" class="search_form">
+                    <form action="{{ request()->route() && request()->route()->getName() === 'products.category' ? url()->current() : route('products') }}" type="submit" class="search_form">
                         <div class="d-flex align-items-center gap-2">
                             <input class="form-control appended-form-control search-bar-input" type="search"
                                 autocomplete="off" data-given-value=""
@@ -113,7 +113,7 @@
                             </span>
                         </div>
 
-                        <input name="data_from" value="search" hidden>
+                        <input name="data_from" value="{{ request()->route() && request()->route()->getName() === 'products.category' ? 'category' : 'search' }}" hidden>
                         <input name="page" value="1" hidden>
                         <diV class="card search-card mobile-search-card">
                             <div class="card-body">
@@ -262,7 +262,7 @@
                                     @if ($categoryIndex < 10)
                                         <li class="dropdown">
 
-                                            <a href="{{ route('products', ['category_id' => $category['id'], 'data_from' => 'category', 'page' => 1]) }}"
+                                            <a href="{{ $category->list_url }}"
                                                 class="d-flex gap-10px align-items-center">
                                                 <img class="aspect-1 rounded-circle" width="20"
                                                     src="{{ getStorageImages(path: $category?->icon_full_url, type: 'category') }}"
@@ -596,7 +596,7 @@
                         @foreach ($categories as $key => $category)
                             <li>
                                 <a
-                                    href="{{ route('products', ['category_id' => $category['id'], 'data_from' => 'category', 'page' => 1]) }}">
+                                    href="{{ $category->list_url }}">
                                     <span class="d-flex gap-10px justify-content-start align-items-center">
                                         <img class="aspect-1 rounded-circle" width="20"
                                             src="{{ getStorageImages(path: $category?->icon_full_url, type: 'category') }}"

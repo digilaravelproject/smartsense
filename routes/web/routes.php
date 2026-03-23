@@ -653,3 +653,8 @@ if (!$isGatewayPublished) {
         });
     });
 }
+
+// Catch-all Category Route - MUST BE AT THE VERY BOTTOM
+Route::controller(\App\Http\Controllers\Web\ProductListController::class)->group(function () {
+    Route::get('/{category_slug}', 'productsByCategory')->name('products.category');
+});

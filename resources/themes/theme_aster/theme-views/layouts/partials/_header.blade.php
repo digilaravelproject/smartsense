@@ -215,7 +215,7 @@
                                             <li>
                                                 <a href="javascript:">
                                                     <span class="get-view-by-onclick"
-                                                        data-link="{{route('products',['category_id'=> $category['id'],'data_from'=>'category','page'=>1])}}">{{ $category['name'] }}</span>
+                                                        data-link="{{$category->list_url}}">{{ $category['name'] }}</span>
                                                 </a>
                                                 @if ($category->childes->count() > 0)
                                                     <ul class="sub_menu">
@@ -397,7 +397,7 @@
                             @foreach($categories as $key=>$category)
                                 @if($key<8)
                                     <li class="{{ $category->childes->count() > 0 ? 'menu-item-has-children':'' }}">
-                                        <a href="{{route('products',['category_id'=> $category['id'],'data_from'=>'category','page'=>1])}}">
+                                        <a href="{{$category->list_url}}">
                                             {{$category['name']}}
                                         </a>
                                         @if ($category->childes->count() > 0)

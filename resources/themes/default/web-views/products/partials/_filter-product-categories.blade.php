@@ -23,7 +23,7 @@
                         } else if (isset($dataFrom) && $dataFrom == 'flash-deals') {
                             $categoryRoute = route('flash-deals', ['id' => ($web_config['flash_deals']['id'] ?? 0), 'category_id' => $category['id'],'data_from'=>'category', 'offer_type' => ($data['offer_type'] ?? ''), 'page' => 1]);
                         } else {
-                            $categoryRoute = route('products', ['category_id' => $category['id'],'data_from'=>'category', 'offer_type' => ($data['offer_type'] ?? ''), 'page' => 1]);
+                            $categoryRoute = $category->list_url . (isset($data['offer_type']) ? '?offer_type=' . $data['offer_type'] : '');
                         }
                     ?>
                     <div>

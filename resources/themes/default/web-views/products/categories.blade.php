@@ -41,7 +41,7 @@
 
         <div class="brand_div-wrap mb-4">
             @foreach($categories as $categoryKey => $category)
-            <a href="{{route('products', ['category_id'=> $category['id'],'data_from'=>'category','page'=>1])}}" class="brand_div">
+            <a href="{{$category->list_url}}" class="brand_div">
                 <img src="{{ getStorageImages(path: $category->icon_full_url, type: 'category') }}" alt="{{ $category['name'] }}">
                 <div>{{ $category['name'] }}</div>
             </a>

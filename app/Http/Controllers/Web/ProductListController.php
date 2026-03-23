@@ -25,6 +25,22 @@ class ProductListController extends Controller
 {
 
 
+    public function productsByCategory(Request $request, string $category_slug)
+    {
+        $category = Category::where('slug', $category_slug)->first();
+        if (!$category) {
+            abort(404);
+        }
+
+        $request->merge([
+            'id' => $category->id,
+            'category_id' => $category->id,
+            'data_from' => 'category',
+        ]);
+
+        return $this->products($request);
+    }
+
     public function products(Request $request)
     {;
         $themeName = theme_root_path();
@@ -309,7 +325,7 @@ class ProductListController extends Controller
             session()->put('product_view_style', $request['product_view']);
         }
 
-        return [
+        $data = [
             'id' => $request['id'],
             'name' => $request['name'],
             'brand_id' => $request['brand_id'],
@@ -328,6 +344,8 @@ class ProductListController extends Controller
             'product_name' => $request['product_name'],
             'page' => $request['page'] ?? 1,
         ];
+
+        return $data;
     }
 
     public function getFlashDealsView(Request $request, $id): View|RedirectResponse|JsonResponse

@@ -25,7 +25,7 @@
                     } else if (isset($dataFrom) && $dataFrom == 'flash-deals') {
                         $productAuthorRoute = route('flash-deals', ['id' => ($web_config['flash_deals']['id'] ?? 0), 'author_id' => $productAuthor['id'], 'product_type'=> 'digital', 'offer_type' => ($data['offer_type'] ?? ''), 'page' => 1]);
                     } else {
-                        $productAuthorRoute = route('products', ['author_id' => $productAuthor['id'], 'product_type' => 'digital', 'offer_type' => ($data['offer_type'] ?? ''), 'page' => 1]);
+                        $productAuthorRoute = (request()->route() && request()->route()->getName() === 'products.category' ? url()->current() : route('products')) . '?' . http_build_query(['author_id' => $productAuthor['id'], 'product_type' => 'digital', 'data_from' => request('data_from') ?? 'author', 'offer_type' => ($data['offer_type'] ?? ''), 'page' => 1]);
                     }
                 ?>
                 <ul class="brand mt-2 p-0 for-brand-hover {{Session::get('direction') === "rtl" ? 'mr-2' : ''}}"
