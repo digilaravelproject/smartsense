@@ -711,12 +711,12 @@ class WebController extends Controller
 
                     // Admin Email
                     try {
-                        Mail::to('darshankondekar01@gmail.com')
+                        Mail::to('boi@smartsense.asia')
                             ->send(new OrderInvoiceMail($order, $customer, $items));
 
                         Log::info('Invoice mail sent to admin', [
                             'order_id' => $orderId,
-                            'email' => 'darshankondekar01@gmail.com'
+                            'email' => 'boi@smartsense.asia'
                         ]);
                     } catch (\Throwable $e) {
                         Log::error('Admin invoice mail failed', [

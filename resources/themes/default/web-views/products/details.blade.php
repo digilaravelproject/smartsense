@@ -997,7 +997,7 @@
 
                 const matched = findMatchingVariation(selectedValue);
 
-                const variantBasePath = "{{ asset('storage/product/variant') }}/";
+                const variantBasePath = "{{ asset('storage/app/public/product/variant') }}/";
                 const defaultProductImage = "{{ getStorageImages(path: $product->images_full_url[0] ?? '', type: 'product') }}";
 
                 let finalImage = '';
