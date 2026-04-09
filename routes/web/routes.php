@@ -25,6 +25,8 @@ use App\Http\Controllers\Web\UserWalletController;
 use App\Http\Controllers\Web\WebController;
 use Illuminate\Support\Facades\Route;
 use App\Enums\ViewPaths\Web\Pages;
+use Modules\Blog\app\Http\Controllers\Web\FrontendBlogController;
+use Modules\Blog\app\Http\Middleware\BlogActiveStatusMiddleware;
 use App\Enums\ViewPaths\Web\Review;
 use App\Enums\ViewPaths\Web\UserLoyalty;
 use App\Http\Controllers\Web\CurrencyController;
@@ -653,6 +655,13 @@ if (!$isGatewayPublished) {
         });
     });
 }
+
+// Blog fallback routes must be registered before the generic product category catch-all route
+Route::middleware([BlogActiveStatusMiddleware::class])->group(function () {
+    Route::get('/blog', [FrontendBlogController::class, 'index'])->name('frontend.blog.index');
+    Route::get('/popular-blog', [FrontendBlogController::class, 'getPopularBlogs'])->name('frontend.blog.popular-blog');
+    Route::get('/blog/{slug}', [FrontendBlogController::class, 'getDetailsView'])->name('frontend.blog.details');
+});
 
 // Catch-all Category Route - MUST BE AT THE VERY BOTTOM
 Route::controller(\App\Http\Controllers\Web\ProductListController::class)->group(function () {

@@ -19,17 +19,20 @@ class BlogActiveStatusMiddleware
     public function handle(Request $request, Closure $next): Response
     {
 
-       if(!getWebConfig(name: 'blog_feature_active_status') ?? 0) {
-           if (!$request->expectsJson()) {
-               Toastr::error(translate('Page_not_found'));
-               return redirect()->route('home');
-           }
+        $blogFeatureActive = getWebConfig(name: 'blog_feature_active_status');
+        $isActive = $blogFeatureActive === null ? 1 : $blogFeatureActive;
 
-           return response()->json([
-               'code' => 404,
-               'message' => translate('Page_not_found')
-           ], 404);
-       }
+        if (! $isActive) {
+            if (!$request->expectsJson()) {
+                Toastr::error(translate('Page_not_found'));
+                return redirect()->route('home');
+            }
+
+            return response()->json([
+                'code' => 404,
+                'message' => translate('Page_not_found')
+            ], 404);
+        }
 
         return $next($request);
     }
