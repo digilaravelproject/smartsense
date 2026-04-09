@@ -299,6 +299,12 @@ Route::group(['namespace' => 'Web', 'middleware' => ['maintenance_mode', 'guestC
         Route::get(Pages::TERMS_AND_CONDITION[URI], 'getTermsAndConditionView')->name('terms');
     });
 
+    Route::middleware([BlogActiveStatusMiddleware::class])->group(function () {
+        Route::get('/blog', [FrontendBlogController::class, 'index'])->name('frontend.blog.index');
+        Route::get('/popular-blog', [FrontendBlogController::class, 'getPopularBlogs'])->name('frontend.blog.popular-blog');
+        Route::get('/blog/{slug}', [FrontendBlogController::class, 'getDetailsView'])->name('frontend.blog.details');
+    });
+
     Route::controller(ProductDetailsController::class)->group(function () {
         Route::get('/product/{slug}', 'index')->name('product.fallback');
         Route::get('/{category}/{slug}', 'index')->name('product');
@@ -655,13 +661,6 @@ if (!$isGatewayPublished) {
         });
     });
 }
-
-// Blog fallback routes must be registered before the generic product category catch-all route
-Route::middleware([BlogActiveStatusMiddleware::class])->group(function () {
-    Route::get('/blog', [FrontendBlogController::class, 'index'])->name('frontend.blog.index');
-    Route::get('/popular-blog', [FrontendBlogController::class, 'getPopularBlogs'])->name('frontend.blog.popular-blog');
-    Route::get('/blog/{slug}', [FrontendBlogController::class, 'getDetailsView'])->name('frontend.blog.details');
-});
 
 // Catch-all Category Route - MUST BE AT THE VERY BOTTOM
 Route::controller(\App\Http\Controllers\Web\ProductListController::class)->group(function () {

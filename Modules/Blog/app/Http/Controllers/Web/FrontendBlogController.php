@@ -81,9 +81,10 @@ class FrontendBlogController extends Controller
     public function getDetailsView(Request $request): View|JsonResponse|RedirectResponse
     {
         $this->frontendBlogService->getCheckLocale(request: $request);
+        $slug = $request->route('slug') ?? $request->input('slug');
         $blogData = $this->blog->withoutGlobalScopes()->with(['category' => function ($query) {
             return $query->active();
-        }, 'translations', 'seoInfo'])->where(['slug' => $request['slug']])->first();
+        }, 'translations', 'seoInfo'])->where(['slug' => $slug])->first();
 
         if (!$blogData) {
             if ($request->ajax()) {
